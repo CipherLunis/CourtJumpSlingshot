@@ -8,17 +8,41 @@
 
 /* Begin PBXBuildFile section */
 		F8871BC02B53870F00052802 /* CourtJumpSlingshotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */; };
-		F8871BC22B53870F00052802 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BC12B53870F00052802 /* ContentView.swift */; };
+		F8871BC22B53870F00052802 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BC12B53870F00052802 /* StartView.swift */; };
 		F8871BC42B53871000052802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8871BC32B53871000052802 /* Assets.xcassets */; };
 		F8871BC72B53871000052802 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8871BC62B53871000052802 /* Preview Assets.xcassets */; };
+		F8871BD42B53970A00052802 /* RedBirdFly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BCE2B53970A00052802 /* RedBirdFly.mp3 */; };
+		F8871BD52B53970A00052802 /* PigDamage1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BCF2B53970A00052802 /* PigDamage1.mp3 */; };
+		F8871BD62B53970A00052802 /* WoodCollide.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD02B53970A00052802 /* WoodCollide.mp3 */; };
+		F8871BD72B53970A00052802 /* PigDamage2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD12B53970A00052802 /* PigDamage2.mp3 */; };
+		F8871BD82B53970A00052802 /* BlueBirdFly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD22B53970A00052802 /* BlueBirdFly.mp3 */; };
+		F8871BD92B53970A00052802 /* YellowBirdFly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD32B53970A00052802 /* YellowBirdFly.mp3 */; };
+		F8871BDE2B539AB000052802 /* StartScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BDD2B539AB000052802 /* StartScreenButton.swift */; };
+		F8871BE02B53A06900052802 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BDF2B53A06900052802 /* GameView.swift */; };
+		F8871BE22B53A10600052802 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BE12B53A10600052802 /* GameScene.swift */; };
+		F8871BE42B53A1C800052802 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8871BE32B53A1C800052802 /* GameScene.sks */; };
+		F8871BE92B53AD9900052802 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BE82B53AD9900052802 /* GameViewController.swift */; };
+		F8871BEB2B53ADF200052802 /* GameViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BEA2B53ADF200052802 /* GameViewControllerRepresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F8871BBC2B53870F00052802 /* CourtJumpSlingshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtJumpSlingshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtJumpSlingshotApp.swift; sourceTree = "<group>"; };
-		F8871BC12B53870F00052802 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F8871BC12B53870F00052802 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		F8871BC32B53871000052802 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8871BC62B53871000052802 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F8871BCE2B53970A00052802 /* RedBirdFly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RedBirdFly.mp3; sourceTree = "<group>"; };
+		F8871BCF2B53970A00052802 /* PigDamage1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PigDamage1.mp3; sourceTree = "<group>"; };
+		F8871BD02B53970A00052802 /* WoodCollide.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WoodCollide.mp3; sourceTree = "<group>"; };
+		F8871BD12B53970A00052802 /* PigDamage2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PigDamage2.mp3; sourceTree = "<group>"; };
+		F8871BD22B53970A00052802 /* BlueBirdFly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BlueBirdFly.mp3; sourceTree = "<group>"; };
+		F8871BD32B53970A00052802 /* YellowBirdFly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YellowBirdFly.mp3; sourceTree = "<group>"; };
+		F8871BDD2B539AB000052802 /* StartScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenButton.swift; sourceTree = "<group>"; };
+		F8871BDF2B53A06900052802 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		F8871BE12B53A10600052802 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		F8871BE32B53A1C800052802 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		F8871BE82B53AD9900052802 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		F8871BEA2B53ADF200052802 /* GameViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerRepresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +75,11 @@
 		F8871BBE2B53870F00052802 /* CourtJumpSlingshot */ = {
 			isa = PBXGroup;
 			children = (
-				F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */,
-				F8871BC12B53870F00052802 /* ContentView.swift */,
+				F8871BE72B53AD4900052802 /* ViewControllers */,
+				F8871BDC2B539A4E00052802 /* Supporting */,
+				F8871BDB2B539A4400052802 /* Views */,
+				F8871BDA2B539A3F00052802 /* Scenes */,
+				F8871BCD2B5396FE00052802 /* Sounds */,
 				F8871BC32B53871000052802 /* Assets.xcassets */,
 				F8871BC52B53871000052802 /* Preview Content */,
 			);
@@ -65,6 +92,55 @@
 				F8871BC62B53871000052802 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F8871BCD2B5396FE00052802 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F8871BD22B53970A00052802 /* BlueBirdFly.mp3 */,
+				F8871BCF2B53970A00052802 /* PigDamage1.mp3 */,
+				F8871BD12B53970A00052802 /* PigDamage2.mp3 */,
+				F8871BCE2B53970A00052802 /* RedBirdFly.mp3 */,
+				F8871BD02B53970A00052802 /* WoodCollide.mp3 */,
+				F8871BD32B53970A00052802 /* YellowBirdFly.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		F8871BDA2B539A3F00052802 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F8871BE12B53A10600052802 /* GameScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F8871BDB2B539A4400052802 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */,
+				F8871BC12B53870F00052802 /* StartView.swift */,
+				F8871BDD2B539AB000052802 /* StartScreenButton.swift */,
+				F8871BDF2B53A06900052802 /* GameView.swift */,
+				F8871BEA2B53ADF200052802 /* GameViewControllerRepresentable.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F8871BDC2B539A4E00052802 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				F8871BE32B53A1C800052802 /* GameScene.sks */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		F8871BE72B53AD4900052802 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F8871BE82B53AD9900052802 /* GameViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +201,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8871BD52B53970A00052802 /* PigDamage1.mp3 in Resources */,
 				F8871BC72B53871000052802 /* Preview Assets.xcassets in Resources */,
+				F8871BD42B53970A00052802 /* RedBirdFly.mp3 in Resources */,
+				F8871BD62B53970A00052802 /* WoodCollide.mp3 in Resources */,
 				F8871BC42B53871000052802 /* Assets.xcassets in Resources */,
+				F8871BD72B53970A00052802 /* PigDamage2.mp3 in Resources */,
+				F8871BD82B53970A00052802 /* BlueBirdFly.mp3 in Resources */,
+				F8871BE42B53A1C800052802 /* GameScene.sks in Resources */,
+				F8871BD92B53970A00052802 /* YellowBirdFly.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +220,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8871BC22B53870F00052802 /* ContentView.swift in Sources */,
+				F8871BE92B53AD9900052802 /* GameViewController.swift in Sources */,
+				F8871BE22B53A10600052802 /* GameScene.swift in Sources */,
+				F8871BDE2B539AB000052802 /* StartScreenButton.swift in Sources */,
+				F8871BC22B53870F00052802 /* StartView.swift in Sources */,
+				F8871BEB2B53ADF200052802 /* GameViewControllerRepresentable.swift in Sources */,
+				F8871BE02B53A06900052802 /* GameView.swift in Sources */,
 				F8871BC02B53870F00052802 /* CourtJumpSlingshotApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,8 +361,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,8 +391,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
