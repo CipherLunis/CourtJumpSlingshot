@@ -10,7 +10,6 @@ import SpriteKit
 
 struct GameView: View {
     @Binding var didStartGame: Bool
-    //@StateObject var gameScene = GameScene(size: UIScreen.main.bounds.size)
     
     var body: some View {
         ZStack {
@@ -25,7 +24,7 @@ struct GameView: View {
 //                    .fill(.black)
 //                    .ignoresSafeArea()
 //                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-//                    .opacity(gameScene.isGameOver ? 0.5 : 0.0)
+//                    .opacity(gameScene.didBeatLevel ? 0.5 : 0.0)
 //                GameOverView(score: gameScene.points,
 //                             playAgain: {
 //                                gameScene.initializeGame()
