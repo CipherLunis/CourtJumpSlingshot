@@ -16,8 +16,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var startPos = CGPoint()
     
     var isMoving = false
+    var didYellowBirdMoveAgain = false
+    
     var numJudgesLeft = 2
     var score = 0
+    var currentBirdNum = 1
     
     var jumperAnimationTextures: [SKTexture] = []
     
@@ -49,6 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     override func didMove(to view: SKView) {
         isMoving = false
         didBeatLevel = false
+        didYellowBirdMoveAgain = false
         
         let ground = childNode(withName: "Ground") as! SKSpriteNode
         ground.physicsBody?.categoryBitMask = ColliderTypes.GroundCategory.rawValue
@@ -56,6 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         ground.physicsBody?.contactTestBitMask = ColliderTypes.WoodenObjectCategory.rawValue | ColliderTypes.JudgeCategory.rawValue | ColliderTypes.JumperCategory.rawValue
         
         jumper = childNode(withName: "Jumper") as! SKSpriteNode
+        jumper.name = "RedJumper"
         jumper.physicsBody?.affectedByGravity = false
         jumper.physicsBody?.categoryBitMask = ColliderTypes.JumperCategory.rawValue
         jumper.physicsBody?.collisionBitMask = ColliderTypes.GlobalCollisionBitMask.rawValue
@@ -152,6 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                         NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
                     ]))
                     temporaryPointsLabel.position = woodenObjectSpriteNode.position
+                    temporaryPointsLabel.zPosition = 4
                     addChild(temporaryPointsLabel)
                     
                     let pointsLabelMoveAction = SKAction.moveTo(y: temporaryPointsLabel.position.y + frame.height/8, duration: 1.0)
@@ -203,6 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                         NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
                     ]))
                     temporaryPointsLabel.position = woodenObjectSpriteNode.position
+                    temporaryPointsLabel.zPosition = 4
                     addChild(temporaryPointsLabel)
                     
                     let pointsLabelMoveAction = SKAction.moveTo(y: temporaryPointsLabel.position.y + frame.height/8, duration: 1.0)
@@ -239,6 +246,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                         NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
                     ]))
                     temporaryPointsLabel.position = judgeSpriteNode.position
+                    temporaryPointsLabel.zPosition = 4
                     addChild(temporaryPointsLabel)
                     
                     let pointsLabelMoveAction = SKAction.moveTo(y: temporaryPointsLabel.position.y + frame.height/8, duration: 1.0)
@@ -279,6 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                         NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
                     ]))
                     temporaryPointsLabel.position = judgeSpriteNode.position
+                    temporaryPointsLabel.zPosition = 4
                     addChild(temporaryPointsLabel)
                     
                     let pointsLabelMoveAction = SKAction.moveTo(y: temporaryPointsLabel.position.y + frame.height/8, duration: 1.0)
@@ -305,11 +314,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         let tapLocation = touch.location(in: self)
         let touchedNodes = self.nodes(at: tapLocation)
         
-        print("touches began")
-        print(touchedNodes)
         for node in touchedNodes {
             if node == jumper {
                 jumper.position = tapLocation
+            }
+        }
+        
+        if jumper.name == "YellowJumper" && isMoving {
+            if !didYellowBirdMoveAgain {
+                didYellowBirdMoveAgain = true
+                let impulse = CGVector(dx: 4*(jumper.physicsBody?.velocity.dx)!, dy: 4*(jumper.physicsBody?.velocity.dy)!)
+                
+                jumper.physicsBody?.applyImpulse(impulse)
             }
         }
     }
@@ -318,8 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         guard let touch = touches.first else { return }
         let tapLocation = touch.location(in: self)
         let touchedNodes = self.nodes(at: tapLocation)
-        print("touches moved")
-        print(touchedNodes)
+        
         for node in touchedNodes {
             if node == jumper {
                 if jumper.position.x < 0 {
@@ -340,15 +355,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         
         for node in touchedNodes {
             if node == jumper {
-                print("node last touched was jumper!")
                 let dx = -(tapLocation.x - startPos.x)
                 let dy = -(tapLocation.y - startPos.y)
                 let impulse = CGVector(dx: 10*dx, dy: 10*dy)
                 
                 isMoving = true
-                print("dx: \(dx)")
-                print("dy: \(dy)")
-                print("impulse: \(impulse)")
                 
                 jumper.physicsBody?.applyImpulse(impulse)
                 jumper.physicsBody?.applyAngularImpulse(-0.01)
@@ -370,6 +381,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             jumper.position = startPos
             jumper.zRotation = 0
             jumper.texture = SKTexture(imageNamed: "Jump1")
+            currentBirdNum += 1
+            didYellowBirdMoveAgain = false
+            
+            switch currentBirdNum%3 {
+            case 1:
+                jumper.name = "RedJumper"
+                jumper.color = .red
+                jumper.colorBlendFactor = 0.8
+            case 2:
+                jumper.name = "YellowJumper"
+                jumper.color = .yellow
+                jumper.colorBlendFactor = 0.8
+            default:
+                jumper.name = "BlueJumper"
+                jumper.color = .blue
+                jumper.colorBlendFactor = 0.8
+            }
             
             isMoving = false
         }
