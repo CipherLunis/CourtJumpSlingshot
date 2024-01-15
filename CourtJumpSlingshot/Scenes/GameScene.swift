@@ -39,13 +39,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         case GlobalCollisionBitMask = 4294967295
     }
     
-    private let temporaryPointsLabelAttributedString = NSAttributedString(string: "300", attributes: [
-        NSAttributedString.Key.strokeWidth : -2.0,
-        NSAttributedString.Key.strokeColor : UIColor.black,
-        NSAttributedString.Key.foregroundColor : UIColor.white,
-        NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
-    ])
-    
     private let scoreTextLabelAttributedString = NSAttributedString(string: "Score: ", attributes: [
         NSAttributedString.Key.strokeWidth : -2.0,
         NSAttributedString.Key.strokeColor : UIColor.black,
@@ -115,16 +108,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        // HANDLE COLLISIONS
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
-        print("collision detected!")
+        
         if nodeA == jumper || nodeB == jumper {
             if nodeA.name == "WoodenObject" {
                 let woodenObjectSpriteNode = nodeA as! SKSpriteNode
                 let woodenObjectType = woodenObjectSpriteNode.userData?.value(forKey: "woodObjectType") as! String
                 let woodenObjectHitPoints = woodenObjectSpriteNode.userData?.value(forKey: "hitPoints") as! Int
-                //woodenObjectSpriteNode.userData?.setObject(woodenObjectHitPoints-1, forKey: "hitPoints" as NSString)
                 
                 let dictionary:NSMutableDictionary! = woodenObjectSpriteNode.userData?.mutableCopy() as? NSMutableDictionary
                 dictionary["hitPoints"] = woodenObjectHitPoints-1
@@ -134,6 +125,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     woodenObjectSpriteNode.texture = SKTexture(imageNamed: "\(woodenObjectType)Broken")
                 } else if woodenObjectHitPoints == 1 {
                     woodenObjectSpriteNode.removeFromParent()
+                    var addedScore = 0
+                    switch woodenObjectType {
+                    case "Square":
+                        addedScore = 100
+                    case "Triangle":
+                        addedScore = 200
+                    // rectangle
+                    default:
+                        addedScore = 250
+                    }
+                    score += addedScore
+                    
+                    pointsLabel.attributedText = NSAttributedString(string: "\(score)", attributes: [
+                        NSAttributedString.Key.strokeWidth : -2.0,
+                        NSAttributedString.Key.strokeColor : UIColor.black,
+                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                        NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
+                    ])
+                    
+                    // animate points above judge's head
+                    let temporaryPointsLabel = SKLabelNode(attributedText: NSAttributedString(string: "\(addedScore)", attributes: [
+                        NSAttributedString.Key.strokeWidth : -2.0,
+                        NSAttributedString.Key.strokeColor : UIColor.black,
+                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                        NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
+                    ]))
+                    temporaryPointsLabel.position = woodenObjectSpriteNode.position
+                    addChild(temporaryPointsLabel)
+                    
+                    let pointsLabelMoveAction = SKAction.moveTo(y: temporaryPointsLabel.position.y + frame.height/8, duration: 1.0)
+                    let pointsLabelFadeAction = SKAction.fadeAlpha(to: 0.0, duration: 1.0)
+                    let pointsLabelRemoveAction = SKAction.removeFromParent()
+                    let moveFadeAndRemoveSequence = SKAction.sequence([SKAction.group([pointsLabelMoveAction, pointsLabelFadeAction]), pointsLabelRemoveAction])
+                    temporaryPointsLabel.run(moveFadeAndRemoveSequence)
                 }
                 
             }
@@ -142,7 +167,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 let woodenObjectType = woodenObjectSpriteNode.userData?.value(forKey: "woodObjectType") as! String
                 let woodenObjectHitPoints = woodenObjectSpriteNode.userData?.value(forKey: "hitPoints") as! Int
                 woodenObjectSpriteNode.texture = SKTexture(imageNamed: "\(woodenObjectType)Broken")
-                //woodenObjectSpriteNode.userData?.setObject(woodenObjectHitPoints-1, forKey: "hitPoints" as NSString)
                 
                 let dictionary:NSMutableDictionary! = woodenObjectSpriteNode.userData?.mutableCopy() as? NSMutableDictionary
                 dictionary["hitPoints"] = woodenObjectHitPoints-1
@@ -152,10 +176,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     woodenObjectSpriteNode.texture = SKTexture(imageNamed: "\(woodenObjectType)Broken")
                 } else if woodenObjectHitPoints == 1 {
                     woodenObjectSpriteNode.removeFromParent()
+                    var addedScore = 0
+                    switch woodenObjectType {
+                    case "Square":
+                        addedScore = 100
+                    case "Triangle":
+                        addedScore = 200
+                    // rectangle
+                    default:
+                        addedScore = 250
+                    }
+                    score += addedScore
+                    
+                    pointsLabel.attributedText = NSAttributedString(string: "\(score)", attributes: [
+                        NSAttributedString.Key.strokeWidth : -2.0,
+                        NSAttributedString.Key.strokeColor : UIColor.black,
+                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                        NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
+                    ])
+                    
+                    // animate points above judge's head
+                    let temporaryPointsLabel = SKLabelNode(attributedText: NSAttributedString(string: "\(addedScore)", attributes: [
+                        NSAttributedString.Key.strokeWidth : -2.0,
+                        NSAttributedString.Key.strokeColor : UIColor.black,
+                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                        NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
+                    ]))
+                    temporaryPointsLabel.position = woodenObjectSpriteNode.position
+                    addChild(temporaryPointsLabel)
+                    
+                    let pointsLabelMoveAction = SKAction.moveTo(y: temporaryPointsLabel.position.y + frame.height/8, duration: 1.0)
+                    let pointsLabelFadeAction = SKAction.fadeAlpha(to: 0.0, duration: 1.0)
+                    let pointsLabelRemoveAction = SKAction.removeFromParent()
+                    let moveFadeAndRemoveSequence = SKAction.sequence([SKAction.group([pointsLabelMoveAction, pointsLabelFadeAction]), pointsLabelRemoveAction])
+                    temporaryPointsLabel.run(moveFadeAndRemoveSequence)
                 }
             }
             if nodeA.name == "Judge" {
-                let judgeSpriteNode = nodeB as! SKSpriteNode
+                let judgeSpriteNode = nodeA as! SKSpriteNode
                 let judgeHitPoints = judgeSpriteNode.userData?.value(forKey: "hitPoints") as! Int
                 let dictionary:NSMutableDictionary! = judgeSpriteNode.userData?.mutableCopy() as? NSMutableDictionary
                 dictionary["hitPoints"] = judgeHitPoints-1
@@ -174,7 +232,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     ])
                     
                     // animate points above judge's head
-                    let temporaryPointsLabel = SKLabelNode(attributedText: temporaryPointsLabelAttributedString)
+                    let temporaryPointsLabel = SKLabelNode(attributedText: NSAttributedString(string: "300", attributes: [
+                        NSAttributedString.Key.strokeWidth : -2.0,
+                        NSAttributedString.Key.strokeColor : UIColor.black,
+                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                        NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
+                    ]))
                     temporaryPointsLabel.position = judgeSpriteNode.position
                     addChild(temporaryPointsLabel)
                     
@@ -209,7 +272,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     ])
                     
                     // animate points above judge's head
-                    let temporaryPointsLabel = SKLabelNode(attributedText: temporaryPointsLabelAttributedString)
+                    let temporaryPointsLabel = SKLabelNode(attributedText: NSAttributedString(string: "300", attributes: [
+                        NSAttributedString.Key.strokeWidth : -2.0,
+                        NSAttributedString.Key.strokeColor : UIColor.black,
+                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                        NSAttributedString.Key.font : UIFont(name: "ArialRoundedMTBold", size: 80.0)!
+                    ]))
                     temporaryPointsLabel.position = judgeSpriteNode.position
                     addChild(temporaryPointsLabel)
                     
