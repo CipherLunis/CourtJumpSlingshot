@@ -11,54 +11,35 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var jumper = SKSpriteNode()
-    var bg = SKSpriteNode()
     var startPos = CGPoint()
     
-    /*override init(size: CGSize) {
-        super.init(size: size)
-        self.size = size
-        
-        jumper = childNode(withName: "Jumper") as! SKSpriteNode
-        print(jumper.position)
-        print(jumper.zPosition)
-        jumper.physicsBody?.affectedByGravity = false
-        jumper.color = .red
-        jumper.colorBlendFactor = 0.5
-        //jumper.size = CGSize(width: frame.width/5, height: frame.width/5)
-        startPos = jumper.position
-        
-        bg = childNode(withName: "BG") as! SKSpriteNode
-        bg.size = CGSize(width: frame.width, height: frame.height)
-        bg.physicsBody?.affectedByGravity = false
-        
-        
-        physicsWorld.contactDelegate = self
-//        let playerTextureAtlas = SKTextureAtlas(named: K.AnimationTextureAtlas)
-//
-//        for
-//        playerFrames.append(playerTextureAtlas.textureNamed(K.Images.Chomp1))
-//        playerFrames.append(playerTextureAtlas.textureNamed(K.Images.Chomp2))
-    } */
+    var isMoving = false
     
-//    required init?(coder aDecoder: NSCoder) {
-//       super.init(coder: aDecoder)
-//    }
+    var jumperAnimationTextures: [SKTexture] = []
+    
+    struct Constants {
+        static var MovementResetThreshold = 0.005
+        static var JumpAnimationTimePerFrame = 0.05
+    }
     
     override func didMove(to view: SKView) {
-        print("DID MOVE TO VIEW 2")
+        isMoving = false
         jumper = childNode(withName: "Jumper") as! SKSpriteNode
         print(jumper.position)
         print(jumper.zPosition)
         jumper.physicsBody?.affectedByGravity = false
         jumper.color = .red
         jumper.colorBlendFactor = 0.8
-        //jumper.size = CGSize(width: frame.width/5, height: frame.width/5)
-        
-        bg = childNode(withName: "BG") as! SKSpriteNode
-        bg.size = CGSize(width: frame.width, height: frame.height)
         
         startPos = jumper.position
         
+        let jumperTextureAtlas = SKTextureAtlas(named: "JumpAnimation")
+        for i in 1...jumperTextureAtlas.textureNames.count {
+            let name = "Jump\(i)"
+            jumperAnimationTextures.append(jumperTextureAtlas.textureNamed(name))
+        }
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
     }
     
@@ -68,14 +49,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        let tapLocation = touch.location(in: view)
+        let tapLocation = touch.location(in: self)
         let touchedNodes = self.nodes(at: tapLocation)
         
         print("touches began")
         print(touchedNodes)
         for node in touchedNodes {
             if let spriteNode = node as? SKSpriteNode {
-                print("node touched: \(spriteNode.name)")
                 if node == jumper {
                     jumper.position = tapLocation
                 }
@@ -85,25 +65,74 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        let tapLocation = touch.location(in: view)
+        let tapLocation = touch.location(in: self)
         let touchedNodes = self.nodes(at: tapLocation)
         print("touches moved")
         print(touchedNodes)
         for node in touchedNodes {
             if let spriteNode = node as? SKSpriteNode {
-                print("node touched: \(spriteNode.name)")
                 if node == jumper {
-                    jumper.position = tapLocation
+                    if jumper.position.x < 0 {
+                        jumper.position.x = 0
+                    } else if jumper.position.x > frame.width/2 {
+                        jumper.position.x = frame.width/2
+                    } else {
+                        jumper.position = tapLocation
+                    }
                 }
             }
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let tapLocation = touch.location(in: self)
+        let touchedNodes = self.nodes(at: tapLocation)
         
+        for node in touchedNodes {
+            if let spriteNode = node as? SKSpriteNode {
+                if node == jumper {
+                    print("node last touched was jumper!")
+                    let dx = -(tapLocation.x - startPos.x)
+                    let dy = -(tapLocation.y - startPos.y)
+                    let impulse = CGVector(dx: 10*dx, dy: 10*dy)
+                    
+                    isMoving = true
+                    print("dx: \(dx)")
+                    print("dy: \(dy)")
+                    print("impulse: \(impulse)")
+                    
+                    jumper.physicsBody?.applyImpulse(impulse)
+                    jumper.physicsBody?.applyAngularImpulse(-0.01)
+                    jumper.physicsBody?.affectedByGravity = true
+                    
+                    let animateJumperAction = SKAction.animate(with: jumperAnimationTextures, timePerFrame: Constants.JumpAnimationTimePerFrame, resize: false, restore: false)
+                    jumper.run(animateJumperAction)
+                }
+            }
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
+//        print("jumper position x: \(jumper.position.x)")
+//        print("frame width / 2: \(frame.width/2)")
+//        if jumper.position.x > frame.width/2 {
+//            jumper.position.x = frame.width/2
+//        }
+        //print("jumper.physicsBody.velocity.dx: \(jumper.physicsBody?.velocity.dx)")
+        //print("jumper.physicsBody.velocity.dy: \(jumper.physicsBody?.velocity.dy)")
+        //< 0.0001     > -0.0001
+        if (((jumper.physicsBody?.velocity.dx)! <= Constants.MovementResetThreshold && (jumper.physicsBody?.velocity.dy)! <= Constants.MovementResetThreshold) &&
+            ((jumper.physicsBody?.velocity.dx)! >= -Constants.MovementResetThreshold && (jumper.physicsBody?.velocity.dy)! <= Constants.MovementResetThreshold))
+            && isMoving {
+            jumper.physicsBody?.affectedByGravity = false
+            jumper.physicsBody?.velocity = .zero
+            jumper.physicsBody?.angularVelocity = 0
+            jumper.position = startPos
+            jumper.zRotation = 0
+            jumper.texture = SKTexture(imageNamed: "Jump1")
+            
+            isMoving = false
+        }
     }
 }

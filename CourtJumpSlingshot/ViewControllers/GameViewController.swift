@@ -20,11 +20,10 @@ class GameViewController: UIViewController {
         if let view = self.view as! SKView? {
             if let scene = SKScene(fileNamed: "GameScene") {
                 scene.scaleMode = .aspectFill
-                //scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-                //scene.size = view.bounds.size
                 
                 view.presentScene(scene)
                 view.showsNodeCount = true
+                view.showsPhysics = true
             }
         }
     }
