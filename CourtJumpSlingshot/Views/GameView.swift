@@ -10,7 +10,6 @@ import SpriteKit
 
 struct GameView: View {
     @Binding var didStartGame: Bool
-    @State var score = 0
     @State var levelNumber = 1
     @StateObject var gameViewModel = GameViewModel()
     
