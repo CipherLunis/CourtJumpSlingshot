@@ -20,6 +20,7 @@ class Level2: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var startPos = CGPoint()
     
     var isMoving = false
+    var finishedUpGame = false
     var didPerformSpecialActionOnTap = false
     
     var numJudgesLeft = 4
@@ -93,6 +94,7 @@ class Level2: SKScene, SKPhysicsContactDelegate, ObservableObject {
         
         scoreTextLabel = SKLabelNode(attributedText: scoreTextLabelAttributedString)
         scoreTextLabel.position = CGPoint(x: -frame.width/2.7, y: frame.height/3.7)
+        scoreTextLabel.zPosition = 4
         addChild(scoreTextLabel)
         
         let pointsLabelAttributedString = NSAttributedString(string: "0", attributes: [
@@ -103,6 +105,7 @@ class Level2: SKScene, SKPhysicsContactDelegate, ObservableObject {
         ])
         pointsLabel = SKLabelNode(attributedText: pointsLabelAttributedString)
         pointsLabel.position = CGPoint(x: -frame.width/3.8, y: frame.height/3.75)
+        pointsLabel.zPosition = 4
         pointsLabel.horizontalAlignmentMode = .left
         addChild(pointsLabel)
         
@@ -301,7 +304,7 @@ class Level2: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     temporaryPointsLabel.run(moveFadeAndRemoveSequence)
                     
                     if numJudgesLeft == 0 {
-                        beatLevel()
+                        finishedUpGame = true
                     }
                 }
             }
@@ -350,15 +353,11 @@ class Level2: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     temporaryPointsLabel.run(moveFadeAndRemoveSequence)
                     
                     if numJudgesLeft == 0 {
-                        beatLevel()
+                        finishedUpGame = true
                     }
                 }
             }
         }
-    }
-    
-    private func beatLevel() {
-        gameViewModel!.didBeatLevel = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -475,6 +474,9 @@ class Level2: SKScene, SKPhysicsContactDelegate, ObservableObject {
         if (((jumper.physicsBody?.velocity.dx)! <= Constants.MovementResetThreshold && (jumper.physicsBody?.velocity.dy)! <= Constants.MovementResetThreshold) &&
             ((jumper.physicsBody?.velocity.dx)! >= -Constants.MovementResetThreshold && (jumper.physicsBody?.velocity.dy)! <= Constants.MovementResetThreshold))
             && isMoving {
+            if finishedUpGame {
+                gameViewModel!.didBeatLevel = true
+            }
             if currentBirdNum%3 == 0 {
                 blueJumper1.removeFromParent()
                 blueJumper2.removeFromParent()

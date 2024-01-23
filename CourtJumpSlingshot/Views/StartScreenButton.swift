@@ -24,7 +24,7 @@ struct StartScreenButton: View {
                     .foregroundColor(.black)
                     .font(.system(size: isIPad ? 60 : 40))
                     .fontWeight(.semibold)
-                    .frame(width: width)
+                    .frame(width: width, height: height)
             }
             .frame(width: width, height: height)
             .background {

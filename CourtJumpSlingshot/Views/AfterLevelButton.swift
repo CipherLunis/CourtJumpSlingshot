@@ -21,6 +21,7 @@ struct AfterLevelButton: View {
                 .foregroundColor(.black)
                 .font(.system(size: isIPad ? 50 : 30))
                 .fontWeight(.semibold)
+                .frame(width: size.width, height: size.height)
         }
         .frame(width: size.width, height: size.height)
         .background {

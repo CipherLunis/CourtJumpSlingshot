@@ -11,7 +11,7 @@ struct AfterLevelView: View {
     let isIPad = UIDevice.current.userInterfaceIdiom == .pad
         
     var score: Int
-    var levelNumber: Int
+    @Binding var levelNumber: Int
     var playAgain: () -> Void
     var backToStart: () -> Void
     
@@ -67,7 +67,7 @@ struct AfterLevelView: View {
 
 struct AfterLevelView_Previews: PreviewProvider {
     static var previews: some View {
-        AfterLevelView(score: 0856876, levelNumber: 1, playAgain: {}, backToStart: {})
+        AfterLevelView(score: 0856876, levelNumber: .constant(1), playAgain: {}, backToStart: {})
             .previewInterfaceOrientation(.landscapeLeft)
     }
 }

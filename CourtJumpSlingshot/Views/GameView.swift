@@ -10,7 +10,8 @@ import SpriteKit
 
 struct GameView: View {
     @Binding var didStartGame: Bool
-    //@State var yOffset = UIScreen.main.bounds.height
+    @State var score = 0
+    @State var levelNumber = 1
     @StateObject var gameViewModel = GameViewModel()
     
     var body: some View {
@@ -28,7 +29,7 @@ struct GameView: View {
                     .opacity(gameViewModel.didBeatLevel ? 0.5 : 0.0)
                 AfterLevelView(
                     score: gameViewModel.score,
-                    levelNumber: gameViewModel.levelNumber,
+                    levelNumber: $levelNumber,
                     playAgain: {
                         gameViewModel.levelNumber += 1
                         gameViewModel.didBeatLevel = false
@@ -37,24 +38,11 @@ struct GameView: View {
                         didStartGame = false
                     }
                 )
+                .onChange(of: gameViewModel.levelNumber) { newValue in
+                    levelNumber = newValue
+                }
                 .offset(y: gameViewModel.didBeatLevel ? 0.0 : geo.size.height)
-                //.offset(y: yOffset)
-//                .onChange(of: gameViewModel.didBeatLevel) { newValue in
-//                    if newValue {
-//                        withAnimation {
-//                            //geo.size.height
-//                            yOffset = 0
-//                        }
-//
-//                        // Add a delay to execute code after animation is complete
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                            gameViewModel.score = 200
-//                            // Code to run after animation is complete
-//                            print("Animation completed!")
-//                        }
-//                    }
-//                }
-                .animation(.interpolatingSpring(mass: 0.01, stiffness: 1, damping: 0.5, initialVelocity: 5.0), value: gameViewModel.didBeatLevel)
+                .animation(.interpolatingSpring(mass: 0.01, stiffness: 1, damping: 0.5, initialVelocity: 5.0), value: gameViewModel.levelNumber)
             }
         }
     }
