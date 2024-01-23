@@ -12,6 +12,8 @@
 		F876CD5E2B5F7C4E00CCA048 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = F876CD5D2B5F7C4E00CCA048 /* Level1.sks */; };
 		F876CD602B5F7CE200CCA048 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = F876CD5F2B5F7CE200CCA048 /* Level2.sks */; };
 		F876CD622B5F7E1700CCA048 /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F876CD612B5F7E1700CCA048 /* Level2.swift */; };
+		F876CD642B5F97BD00CCA048 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F876CD632B5F97BD00CCA048 /* SoundManager.swift */; };
+		F876CD662B5F97F100CCA048 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F876CD652B5F97F100CCA048 /* Constants.swift */; };
 		F8871BC02B53870F00052802 /* CourtJumpSlingshotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */; };
 		F8871BC22B53870F00052802 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BC12B53870F00052802 /* StartView.swift */; };
 		F8871BC42B53871000052802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8871BC32B53871000052802 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		F876CD5D2B5F7C4E00CCA048 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		F876CD5F2B5F7CE200CCA048 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		F876CD612B5F7E1700CCA048 /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
+		F876CD632B5F97BD00CCA048 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		F876CD652B5F97F100CCA048 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F8871BBC2B53870F00052802 /* CourtJumpSlingshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtJumpSlingshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtJumpSlingshotApp.swift; sourceTree = "<group>"; };
 		F8871BC12B53870F00052802 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			children = (
 				F876CD5D2B5F7C4E00CCA048 /* Level1.sks */,
 				F876CD5F2B5F7CE200CCA048 /* Level2.sks */,
+				F876CD632B5F97BD00CCA048 /* SoundManager.swift */,
+				F876CD652B5F97F100CCA048 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -257,7 +263,9 @@
 				F8871BDE2B539AB000052802 /* StartScreenButton.swift in Sources */,
 				F8871BC22B53870F00052802 /* StartView.swift in Sources */,
 				F864261E2B59ECF000D146FA /* GameViewModel.swift in Sources */,
+				F876CD642B5F97BD00CCA048 /* SoundManager.swift in Sources */,
 				F8871BEB2B53ADF200052802 /* GameViewControllerRepresentable.swift in Sources */,
+				F876CD662B5F97F100CCA048 /* Constants.swift in Sources */,
 				F8871BE02B53A06900052802 /* GameView.swift in Sources */,
 				F876CD5A2B5F774100CCA048 /* AfterLevelButton.swift in Sources */,
 				F88CBEF12B5E22FB009033E0 /* AfterLevelView.swift in Sources */,

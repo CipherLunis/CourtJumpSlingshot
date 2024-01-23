@@ -25,6 +25,8 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
     var numJudgesLeft = 2
     var currentBirdNum = 1
     
+    let soundQueue = DispatchQueue(label: "com.CipherLunis.CourtJumpSlingshot.soundQueue")
+    
     var jumperAnimationTextures: [SKTexture] = []
     
     var scoreTextLabel = SKLabelNode()
@@ -104,7 +106,7 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
         pointsLabel.horizontalAlignmentMode = .left
         addChild(pointsLabel)
         
-        for i in 1...2 {
+        for i in 1...numJudgesLeft {
             let judge = childNode(withName: "Judge\(i)") as! SKSpriteNode
             judge.name = "Judge"
             judge.color = .green
@@ -144,6 +146,14 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 let dictionary:NSMutableDictionary! = woodenObjectSpriteNode.userData?.mutableCopy() as? NSMutableDictionary
                 dictionary["hitPoints"] = woodenObjectHitPoints-1
                 woodenObjectSpriteNode.userData = dictionary
+                
+                soundQueue.async {
+                    if Int.random(in: 0...1) == 0 {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.WoodCollide1)
+                    } else {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.WoodCollide2)
+                    }
+                }
                 
                 if woodenObjectHitPoints == 2 {
                     woodenObjectSpriteNode.texture = SKTexture(imageNamed: "\(woodenObjectType)Broken")
@@ -197,6 +207,14 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 dictionary["hitPoints"] = woodenObjectHitPoints-1
                 woodenObjectSpriteNode.userData = dictionary
                 
+                soundQueue.async {
+                    if Int.random(in: 0...1) == 0 {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.WoodCollide1)
+                    } else {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.WoodCollide2)
+                    }
+                }
+                
                 if woodenObjectHitPoints == 2 {
                     woodenObjectSpriteNode.texture = SKTexture(imageNamed: "\(woodenObjectType)Broken")
                 } else if woodenObjectHitPoints == 1 {
@@ -245,6 +263,14 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 dictionary["hitPoints"] = judgeHitPoints-1
                 judgeSpriteNode.userData = dictionary
                 
+                soundQueue.async {
+                    if Int.random(in: 0...1) == 0 {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.PigDamage1)
+                    } else {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.PigDamage2)
+                    }
+                }
+                
                 if judgeHitPoints == 1 {
                     judgeSpriteNode.removeFromParent()
                     numJudgesLeft -= 1
@@ -285,6 +311,14 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 let dictionary:NSMutableDictionary! = judgeSpriteNode.userData?.mutableCopy() as? NSMutableDictionary
                 dictionary["hitPoints"] = judgeHitPoints-1
                 judgeSpriteNode.userData = dictionary
+                
+                soundQueue.async {
+                    if Int.random(in: 0...1) == 0 {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.PigDamage1)
+                    } else {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.PigDamage2)
+                    }
+                }
                 
                 if judgeHitPoints == 1 {
                     judgeSpriteNode.removeFromParent()
@@ -335,6 +369,12 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
         for node in touchedNodes {
             if node == jumper {
                 jumper.position = tapLocation
+            }
+        }
+        
+        if !isMoving {
+            soundQueue.async {
+                SoundManager.sharedInstance.playSound(fileName: K.Sounds.SlingshotStretched)
             }
         }
         
@@ -412,6 +452,21 @@ class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 
                 let animateJumperAction = SKAction.animate(with: jumperAnimationTextures, timePerFrame: Constants.JumpAnimationTimePerFrame, resize: false, restore: false)
                 jumper.run(animateJumperAction)
+                
+                switch currentBirdNum%3 {
+                case 1:
+                    soundQueue.async {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.RedBirdFly)
+                    }
+                case 2:
+                    soundQueue.async {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.YellowBirdFly)
+                    }
+                default:
+                    soundQueue.async {
+                        SoundManager.sharedInstance.playSound(fileName: K.Sounds.BlueBirdFly)
+                    }
+                }
             }
         }
     }
