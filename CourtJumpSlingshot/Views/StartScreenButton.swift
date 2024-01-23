@@ -21,12 +21,18 @@ struct StartScreenButton: View {
                 startGame()
             } label: {
                 Text(text)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .font(.system(size: isIPad ? 60 : 40))
+                    .fontWeight(.semibold)
                     .frame(width: width)
             }
             .frame(width: width, height: height)
-            .background(.green)
+            .background {
+                LinearGradient(stops: [
+                    .init(color: .blue, location: 0),
+                    .init(color: .white, location: 2.5)
+                ], startPoint: .top, endPoint: .bottom)
+            }
             .cornerRadius(10)
             Spacer()
         }

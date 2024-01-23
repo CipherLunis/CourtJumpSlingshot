@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  Level1.swift
 //  CourtJumpSlingshot
 //
 //  Created by Cipher Lunis on 1/13/24.
@@ -8,18 +8,21 @@
 import Foundation
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
+class Level1: SKScene, SKPhysicsContactDelegate, ObservableObject {
+    
+    var gameViewModel: GameViewModel?
     
     var jumper = SKSpriteNode()
+    var blueJumper1 = SKSpriteNode()
+    var blueJumper2 = SKSpriteNode()
     var woodenObjects: [SKSpriteNode] = []
     
     var startPos = CGPoint()
     
     var isMoving = false
-    var didYellowBirdMoveAgain = false
+    var didPerformSpecialActionOnTap = false
     
     var numJudgesLeft = 2
-    var score = 0
     var currentBirdNum = 1
     
     var jumperAnimationTextures: [SKTexture] = []
@@ -52,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     override func didMove(to view: SKView) {
         isMoving = false
         didBeatLevel = false
-        didYellowBirdMoveAgain = false
+        didPerformSpecialActionOnTap = false
         
         let ground = childNode(withName: "Ground") as! SKSpriteNode
         ground.physicsBody?.categoryBitMask = ColliderTypes.GroundCategory.rawValue
@@ -67,6 +70,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         jumper.physicsBody?.contactTestBitMask = ColliderTypes.WoodenObjectCategory.rawValue | ColliderTypes.JudgeCategory.rawValue | ColliderTypes.GroundCategory.rawValue
         jumper.color = .red
         jumper.colorBlendFactor = 0.8
+        
+        blueJumper1 = childNode(withName: "BlueJumper1") as! SKSpriteNode
+        blueJumper1.size = jumper.size
+        blueJumper1.alpha = 0.0
+        blueJumper1.color = .blue
+        blueJumper1.colorBlendFactor = 0.8
+        blueJumper1.zPosition = 2
+        blueJumper1.name = "BlueJumper"
+        
+        blueJumper2 = childNode(withName: "BlueJumper2") as! SKSpriteNode
+        blueJumper2.size = jumper.size
+        blueJumper2.alpha = 0.0
+        blueJumper2.color = .blue
+        blueJumper2.colorBlendFactor = 0.8
+        blueJumper2.zPosition = 2
+        blueJumper2.name = "BlueJumper"
         
         startPos = jumper.position
         
@@ -140,9 +159,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     default:
                         addedScore = 250
                     }
-                    score += addedScore
+                    gameViewModel!.score += addedScore
                     
-                    pointsLabel.attributedText = NSAttributedString(string: "\(score)", attributes: [
+                    pointsLabel.attributedText = NSAttributedString(string: "\(gameViewModel!.score)", attributes: [
                         NSAttributedString.Key.strokeWidth : -2.0,
                         NSAttributedString.Key.strokeColor : UIColor.black,
                         NSAttributedString.Key.foregroundColor : UIColor.white,
@@ -192,9 +211,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     default:
                         addedScore = 250
                     }
-                    score += addedScore
+                    gameViewModel!.score += addedScore
                     
-                    pointsLabel.attributedText = NSAttributedString(string: "\(score)", attributes: [
+                    pointsLabel.attributedText = NSAttributedString(string: "\(gameViewModel!.score)", attributes: [
                         NSAttributedString.Key.strokeWidth : -2.0,
                         NSAttributedString.Key.strokeColor : UIColor.black,
                         NSAttributedString.Key.foregroundColor : UIColor.white,
@@ -229,9 +248,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 if judgeHitPoints == 1 {
                     judgeSpriteNode.removeFromParent()
                     numJudgesLeft -= 1
-                    score += 300
+                    gameViewModel!.score += 300
                     
-                    pointsLabel.attributedText = NSAttributedString(string: "\(score)", attributes: [
+                    pointsLabel.attributedText = NSAttributedString(string: "\(gameViewModel!.score)", attributes: [
                         NSAttributedString.Key.strokeWidth : -2.0,
                         NSAttributedString.Key.strokeColor : UIColor.black,
                         NSAttributedString.Key.foregroundColor : UIColor.white,
@@ -270,9 +289,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                 if judgeHitPoints == 1 {
                     judgeSpriteNode.removeFromParent()
                     numJudgesLeft -= 1
-                    score += 300
+                    gameViewModel!.score += 300
                     
-                    pointsLabel.attributedText = NSAttributedString(string: "\(score)", attributes: [
+                    pointsLabel.attributedText = NSAttributedString(string: "\(gameViewModel!.score)", attributes: [
                         NSAttributedString.Key.strokeWidth : -2.0,
                         NSAttributedString.Key.strokeColor : UIColor.black,
                         NSAttributedString.Key.foregroundColor : UIColor.white,
@@ -305,8 +324,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     }
     
     private func beatLevel() {
-        // DO SOMETHING
-        didBeatLevel = true
+        gameViewModel!.didBeatLevel = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -321,11 +339,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         }
         
         if jumper.name == "YellowJumper" && isMoving {
-            if !didYellowBirdMoveAgain {
-                didYellowBirdMoveAgain = true
+            if !didPerformSpecialActionOnTap {
+                didPerformSpecialActionOnTap = true
                 let impulse = CGVector(dx: 4*(jumper.physicsBody?.velocity.dx)!, dy: 4*(jumper.physicsBody?.velocity.dy)!)
                 
                 jumper.physicsBody?.applyImpulse(impulse)
+            }
+        }
+        
+        if jumper.name == "BlueJumper" && isMoving {
+            if !didPerformSpecialActionOnTap {
+                didPerformSpecialActionOnTap = true
+                
+                blueJumper1.alpha = 1.0
+                blueJumper1.position = CGPoint(x: jumper.position.x, y: jumper.position.y + frame.height/6)
+                blueJumper1.physicsBody = SKPhysicsBody(rectangleOf: blueJumper1.size)
+                blueJumper1.physicsBody?.affectedByGravity = true
+                blueJumper1.physicsBody?.categoryBitMask = ColliderTypes.JumperCategory.rawValue
+                blueJumper1.physicsBody?.collisionBitMask = ColliderTypes.GlobalCollisionBitMask.rawValue
+                blueJumper1.physicsBody?.contactTestBitMask = ColliderTypes.WoodenObjectCategory.rawValue | ColliderTypes.JudgeCategory.rawValue | ColliderTypes.GroundCategory.rawValue
+                
+                blueJumper2.alpha = 1.0
+                blueJumper2.position = CGPoint(x: jumper.position.x, y: jumper.position.y - frame.height/6)
+                blueJumper2.physicsBody = SKPhysicsBody(rectangleOf: blueJumper2.size)
+                blueJumper2.physicsBody?.affectedByGravity = true
+                blueJumper2.physicsBody?.categoryBitMask = ColliderTypes.JumperCategory.rawValue
+                blueJumper2.physicsBody?.collisionBitMask = ColliderTypes.GlobalCollisionBitMask.rawValue
+                blueJumper2.physicsBody?.contactTestBitMask = ColliderTypes.WoodenObjectCategory.rawValue | ColliderTypes.JudgeCategory.rawValue | ColliderTypes.GroundCategory.rawValue
+                
+                blueJumper1.physicsBody?.applyAngularImpulse(-0.01)
+                blueJumper2.physicsBody?.applyAngularImpulse(-0.01)
+                blueJumper1.physicsBody?.applyImpulse(jumper.physicsBody!.velocity)
+                blueJumper2.physicsBody?.applyImpulse(jumper.physicsBody!.velocity)
             }
         }
     }
@@ -375,6 +420,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
         if (((jumper.physicsBody?.velocity.dx)! <= Constants.MovementResetThreshold && (jumper.physicsBody?.velocity.dy)! <= Constants.MovementResetThreshold) &&
             ((jumper.physicsBody?.velocity.dx)! >= -Constants.MovementResetThreshold && (jumper.physicsBody?.velocity.dy)! <= Constants.MovementResetThreshold))
             && isMoving {
+            if currentBirdNum%3 == 0 {
+                blueJumper1.removeFromParent()
+                blueJumper2.removeFromParent()
+            }
             jumper.physicsBody?.affectedByGravity = false
             jumper.physicsBody?.velocity = .zero
             jumper.physicsBody?.angularVelocity = 0
@@ -382,7 +431,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
             jumper.zRotation = 0
             jumper.texture = SKTexture(imageNamed: "Jump1")
             currentBirdNum += 1
-            didYellowBirdMoveAgain = false
+            didPerformSpecialActionOnTap = false
             
             switch currentBirdNum%3 {
             case 1:

@@ -10,9 +10,11 @@ import SwiftUI
 
 struct GameViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = GameViewController
+    @EnvironmentObject var gameViewModel: GameViewModel
     
     func makeUIViewController(context: Context) -> GameViewController {
         let vc = GameViewController()
+        vc.gameViewModel = gameViewModel
         return vc
     }
 

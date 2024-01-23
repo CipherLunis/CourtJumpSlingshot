@@ -39,6 +39,7 @@ struct StartView: View {
                             didStartGame = true
                         }
                         .padding(.bottom, geo.size.height/12)
+                        .shadow(radius: 10.0)
                     }
                     
                     VStack {

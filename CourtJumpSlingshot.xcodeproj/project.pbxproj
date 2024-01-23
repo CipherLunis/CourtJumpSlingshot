@@ -7,25 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F864261E2B59ECF000D146FA /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F864261D2B59ECF000D146FA /* GameViewModel.swift */; };
+		F876CD5A2B5F774100CCA048 /* AfterLevelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F876CD592B5F774100CCA048 /* AfterLevelButton.swift */; };
+		F876CD5E2B5F7C4E00CCA048 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = F876CD5D2B5F7C4E00CCA048 /* Level1.sks */; };
+		F876CD602B5F7CE200CCA048 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = F876CD5F2B5F7CE200CCA048 /* Level2.sks */; };
+		F876CD622B5F7E1700CCA048 /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F876CD612B5F7E1700CCA048 /* Level2.swift */; };
 		F8871BC02B53870F00052802 /* CourtJumpSlingshotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */; };
 		F8871BC22B53870F00052802 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BC12B53870F00052802 /* StartView.swift */; };
 		F8871BC42B53871000052802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8871BC32B53871000052802 /* Assets.xcassets */; };
 		F8871BC72B53871000052802 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8871BC62B53871000052802 /* Preview Assets.xcassets */; };
 		F8871BD42B53970A00052802 /* RedBirdFly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BCE2B53970A00052802 /* RedBirdFly.mp3 */; };
 		F8871BD52B53970A00052802 /* PigDamage1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BCF2B53970A00052802 /* PigDamage1.mp3 */; };
-		F8871BD62B53970A00052802 /* WoodCollide.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD02B53970A00052802 /* WoodCollide.mp3 */; };
+		F8871BD62B53970A00052802 /* WoodCollide1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD02B53970A00052802 /* WoodCollide1.mp3 */; };
 		F8871BD72B53970A00052802 /* PigDamage2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD12B53970A00052802 /* PigDamage2.mp3 */; };
 		F8871BD82B53970A00052802 /* BlueBirdFly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD22B53970A00052802 /* BlueBirdFly.mp3 */; };
 		F8871BD92B53970A00052802 /* YellowBirdFly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F8871BD32B53970A00052802 /* YellowBirdFly.mp3 */; };
 		F8871BDE2B539AB000052802 /* StartScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BDD2B539AB000052802 /* StartScreenButton.swift */; };
 		F8871BE02B53A06900052802 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BDF2B53A06900052802 /* GameView.swift */; };
-		F8871BE22B53A10600052802 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BE12B53A10600052802 /* GameScene.swift */; };
-		F8871BE42B53A1C800052802 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8871BE32B53A1C800052802 /* GameScene.sks */; };
+		F8871BE22B53A10600052802 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BE12B53A10600052802 /* Level1.swift */; };
 		F8871BE92B53AD9900052802 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BE82B53AD9900052802 /* GameViewController.swift */; };
 		F8871BEB2B53ADF200052802 /* GameViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8871BEA2B53ADF200052802 /* GameViewControllerRepresentable.swift */; };
+		F88CBEED2B5E193A009033E0 /* WoodCollide2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F88CBEEC2B5E193A009033E0 /* WoodCollide2.mp3 */; };
+		F88CBEEF2B5E1950009033E0 /* SlingshotStretched.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F88CBEEE2B5E1950009033E0 /* SlingshotStretched.mp3 */; };
+		F88CBEF12B5E22FB009033E0 /* AfterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88CBEF02B5E22FB009033E0 /* AfterLevelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F864261D2B59ECF000D146FA /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		F876CD592B5F774100CCA048 /* AfterLevelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterLevelButton.swift; sourceTree = "<group>"; };
+		F876CD5D2B5F7C4E00CCA048 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
+		F876CD5F2B5F7CE200CCA048 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
+		F876CD612B5F7E1700CCA048 /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		F8871BBC2B53870F00052802 /* CourtJumpSlingshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtJumpSlingshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8871BBF2B53870F00052802 /* CourtJumpSlingshotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtJumpSlingshotApp.swift; sourceTree = "<group>"; };
 		F8871BC12B53870F00052802 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -33,16 +45,18 @@
 		F8871BC62B53871000052802 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8871BCE2B53970A00052802 /* RedBirdFly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RedBirdFly.mp3; sourceTree = "<group>"; };
 		F8871BCF2B53970A00052802 /* PigDamage1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PigDamage1.mp3; sourceTree = "<group>"; };
-		F8871BD02B53970A00052802 /* WoodCollide.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WoodCollide.mp3; sourceTree = "<group>"; };
+		F8871BD02B53970A00052802 /* WoodCollide1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WoodCollide1.mp3; sourceTree = "<group>"; };
 		F8871BD12B53970A00052802 /* PigDamage2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PigDamage2.mp3; sourceTree = "<group>"; };
 		F8871BD22B53970A00052802 /* BlueBirdFly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BlueBirdFly.mp3; sourceTree = "<group>"; };
 		F8871BD32B53970A00052802 /* YellowBirdFly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YellowBirdFly.mp3; sourceTree = "<group>"; };
 		F8871BDD2B539AB000052802 /* StartScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenButton.swift; sourceTree = "<group>"; };
 		F8871BDF2B53A06900052802 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		F8871BE12B53A10600052802 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		F8871BE32B53A1C800052802 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		F8871BE12B53A10600052802 /* Level1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
 		F8871BE82B53AD9900052802 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F8871BEA2B53ADF200052802 /* GameViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		F88CBEEC2B5E193A009033E0 /* WoodCollide2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WoodCollide2.mp3; sourceTree = "<group>"; };
+		F88CBEEE2B5E1950009033E0 /* SlingshotStretched.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SlingshotStretched.mp3; sourceTree = "<group>"; };
+		F88CBEF02B5E22FB009033E0 /* AfterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterLevelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F876CD582B5F737700CCA048 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F864261D2B59ECF000D146FA /* GameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		F8871BB32B53870F00052802 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +97,7 @@
 		F8871BBE2B53870F00052802 /* CourtJumpSlingshot */ = {
 			isa = PBXGroup;
 			children = (
+				F876CD582B5F737700CCA048 /* ViewModel */,
 				F8871BE72B53AD4900052802 /* ViewControllers */,
 				F8871BDC2B539A4E00052802 /* Supporting */,
 				F8871BDB2B539A4400052802 /* Views */,
@@ -101,7 +124,9 @@
 				F8871BCF2B53970A00052802 /* PigDamage1.mp3 */,
 				F8871BD12B53970A00052802 /* PigDamage2.mp3 */,
 				F8871BCE2B53970A00052802 /* RedBirdFly.mp3 */,
-				F8871BD02B53970A00052802 /* WoodCollide.mp3 */,
+				F88CBEEE2B5E1950009033E0 /* SlingshotStretched.mp3 */,
+				F8871BD02B53970A00052802 /* WoodCollide1.mp3 */,
+				F88CBEEC2B5E193A009033E0 /* WoodCollide2.mp3 */,
 				F8871BD32B53970A00052802 /* YellowBirdFly.mp3 */,
 			);
 			path = Sounds;
@@ -110,7 +135,8 @@
 		F8871BDA2B539A3F00052802 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				F8871BE12B53A10600052802 /* GameScene.swift */,
+				F8871BE12B53A10600052802 /* Level1.swift */,
+				F876CD612B5F7E1700CCA048 /* Level2.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -123,6 +149,8 @@
 				F8871BDD2B539AB000052802 /* StartScreenButton.swift */,
 				F8871BDF2B53A06900052802 /* GameView.swift */,
 				F8871BEA2B53ADF200052802 /* GameViewControllerRepresentable.swift */,
+				F88CBEF02B5E22FB009033E0 /* AfterLevelView.swift */,
+				F876CD592B5F774100CCA048 /* AfterLevelButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,7 +158,8 @@
 		F8871BDC2B539A4E00052802 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				F8871BE32B53A1C800052802 /* GameScene.sks */,
+				F876CD5D2B5F7C4E00CCA048 /* Level1.sks */,
+				F876CD5F2B5F7CE200CCA048 /* Level2.sks */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -201,14 +230,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F88CBEEF2B5E1950009033E0 /* SlingshotStretched.mp3 in Resources */,
 				F8871BD52B53970A00052802 /* PigDamage1.mp3 in Resources */,
+				F88CBEED2B5E193A009033E0 /* WoodCollide2.mp3 in Resources */,
 				F8871BC72B53871000052802 /* Preview Assets.xcassets in Resources */,
 				F8871BD42B53970A00052802 /* RedBirdFly.mp3 in Resources */,
-				F8871BD62B53970A00052802 /* WoodCollide.mp3 in Resources */,
+				F8871BD62B53970A00052802 /* WoodCollide1.mp3 in Resources */,
 				F8871BC42B53871000052802 /* Assets.xcassets in Resources */,
+				F876CD602B5F7CE200CCA048 /* Level2.sks in Resources */,
 				F8871BD72B53970A00052802 /* PigDamage2.mp3 in Resources */,
 				F8871BD82B53970A00052802 /* BlueBirdFly.mp3 in Resources */,
-				F8871BE42B53A1C800052802 /* GameScene.sks in Resources */,
+				F876CD5E2B5F7C4E00CCA048 /* Level1.sks in Resources */,
 				F8871BD92B53970A00052802 /* YellowBirdFly.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,12 +253,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8871BE92B53AD9900052802 /* GameViewController.swift in Sources */,
-				F8871BE22B53A10600052802 /* GameScene.swift in Sources */,
+				F8871BE22B53A10600052802 /* Level1.swift in Sources */,
 				F8871BDE2B539AB000052802 /* StartScreenButton.swift in Sources */,
 				F8871BC22B53870F00052802 /* StartView.swift in Sources */,
+				F864261E2B59ECF000D146FA /* GameViewModel.swift in Sources */,
 				F8871BEB2B53ADF200052802 /* GameViewControllerRepresentable.swift in Sources */,
 				F8871BE02B53A06900052802 /* GameView.swift in Sources */,
+				F876CD5A2B5F774100CCA048 /* AfterLevelButton.swift in Sources */,
+				F88CBEF12B5E22FB009033E0 /* AfterLevelView.swift in Sources */,
 				F8871BC02B53870F00052802 /* CourtJumpSlingshotApp.swift in Sources */,
+				F876CD622B5F7E1700CCA048 /* Level2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

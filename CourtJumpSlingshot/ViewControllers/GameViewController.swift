@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SwiftUI
 import SpriteKit
 
 class GameViewController: UIViewController {
 
+    var gameViewModel: GameViewModel?
+    
     override func loadView() {
         self.view = SKView()
     }
@@ -18,13 +21,27 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         if let view = self.view as! SKView? {
-            if let scene = SKScene(fileNamed: "GameScene") {
-                scene.scaleMode = .aspectFill
-                
-                view.presentScene(scene)
-                view.showsNodeCount = true
-                //view.showsPhysics = true
+            switch gameViewModel!.levelNumber {
+            case 1:
+                if let scene = SKScene(fileNamed: "Level\(gameViewModel!.levelNumber)") as? Level1 {
+                    scene.scaleMode = .aspectFill
+                    scene.gameViewModel = gameViewModel
+                    view.presentScene(scene)
+                }
+            case 2:
+                if let scene = SKScene(fileNamed: "Level\(gameViewModel!.levelNumber)") as? Level2 {
+                    scene.scaleMode = .aspectFill
+                    scene.gameViewModel = gameViewModel
+                    view.presentScene(scene)
+                }
+            default:
+                if let scene = SKScene(fileNamed: "Level2") as? Level2 {
+                    scene.scaleMode = .aspectFill
+                    scene.gameViewModel = gameViewModel
+                    view.presentScene(scene)
+                }
             }
+            
         }
     }
 }
