@@ -41,7 +41,7 @@ struct GameView: View {
                     levelNumber = newValue
                 }
                 .offset(y: gameViewModel.didBeatLevel ? 0.0 : geo.size.height)
-                .animation(.interpolatingSpring(mass: 0.01, stiffness: 1, damping: 0.5, initialVelocity: 5.0), value: gameViewModel.levelNumber)
+                .animation(.interpolatingSpring(mass: 0.01, stiffness: 1, damping: 0.5, initialVelocity: 5.0), value: gameViewModel.didBeatLevel)
             }
         }
     }
