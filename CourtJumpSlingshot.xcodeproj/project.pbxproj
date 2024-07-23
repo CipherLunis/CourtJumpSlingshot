@@ -61,6 +61,7 @@
 		F88CBEEC2B5E193A009033E0 /* WoodCollide2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WoodCollide2.mp3; sourceTree = "<group>"; };
 		F88CBEEE2B5E1950009033E0 /* SlingshotStretched.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SlingshotStretched.mp3; sourceTree = "<group>"; };
 		F88CBEF02B5E22FB009033E0 /* AfterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterLevelView.swift; sourceTree = "<group>"; };
+		F8A26F6B2C4F67B00001F58B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +86,7 @@
 		F8871BB32B53870F00052802 = {
 			isa = PBXGroup;
 			children = (
+				F8A26F6B2C4F67B00001F58B /* README.md */,
 				F8871BBE2B53870F00052802 /* CourtJumpSlingshot */,
 				F8871BBD2B53870F00052802 /* Products */,
 			);
@@ -101,6 +103,7 @@
 		F8871BBE2B53870F00052802 /* CourtJumpSlingshot */ = {
 			isa = PBXGroup;
 			children = (
+				F8A26F6C2C4F6AB40001F58B /* Images */,
 				F876CD582B5F737700CCA048 /* ViewModel */,
 				F8871BE72B53AD4900052802 /* ViewControllers */,
 				F8871BDC2B539A4E00052802 /* Supporting */,
@@ -176,6 +179,13 @@
 				F8871BE82B53AD9900052802 /* GameViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F8A26F6C2C4F6AB40001F58B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
